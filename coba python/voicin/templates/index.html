@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOICIN - Voice Authenticity Detection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <i class="fa-solid fa-waveform"></i>
+            <span>VOICIN</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/history">History</a>
+            <a href="/about">About</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Voice Authenticity Detection</h1>
+        <p>Deteksi apakah suara adalah <span class="highlight">suara asli manusia</span> atau <span class="highlight">hasil AI Generated Voice</span> secara cepat.</p>
+    </section>
+
+    <section class="card-container">
+        <div class="card">
+            <i class="fa-solid fa-microphone card-icon"></i>
+            <h3>Record Voice</h3>
+            <p>Rekam suara langsung dari mikrofon dan lihat durasi perekaman.</p>
+            <div class="record-controls">
+                <button id="btnRecord" class="btn btn-primary"><i class="fa-solid fa-circle"></i> Record</button>
+                <button id="btnStop" class="btn btn-secondary" disabled><i class="fa-solid fa-stop"></i> Stop</button>
+            </div>
+            <div id="recordTimer" class="record-timer">00:00</div>
+            <audio id="audioPlayback" controls style="display:none;"></audio>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-file-audio card-icon"></i>
+            <h3>Upload Audio</h3>
+            <p>Unggah file audio (.wav, .mp3, .webm, .m4a, .ogg) untuk dianalisis.</p>
+            <form id="uploadForm">
+                <label for="fileInput" class="btn btn-primary upload-label"><i class="fa-solid fa-upload"></i> Pilih File</label>
+                <input type="file" id="fileInput" accept=".wav,.mp3,.webm,.ogg,.m4a,audio/*" hidden>
+                <p id="fileName" class="file-name"></p>
+                <button type="submit" class="btn btn-secondary" id="btnUpload" disabled><i class="fa-solid fa-magnifying-glass"></i> Analisis</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="loading" class="loading" style="display:none;">
+        <div class="spinner"></div>
+        <p>Menganalisis audio...</p>
+    </div>
+
+    <section id="resultCard" class="result-card" style="display:none;">
+        <h3>Hasil Deteksi</h3>
+        <div class="result-status">
+            <i id="resultIcon" class="fa-solid fa-circle-check"></i>
+            <span id="resultLabel">-</span>
+        </div>
+        <div class="confidence-bar-wrapper">
+            <div id="confidenceBar" class="confidence-bar"></div>
+        </div>
+        <p id="confidenceText">Confidence: -</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 VOICIN — Voice Authenticity Detection</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

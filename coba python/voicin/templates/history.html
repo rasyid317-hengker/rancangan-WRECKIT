@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - VOICIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <i class="fa-solid fa-waveform"></i>
+            <span>VOICIN</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/history" class="active">History</a>
+            <a href="/about">About</a>
+        </div>
+    </nav>
+
+    <section class="history-section">
+        <div class="history-header">
+            <h2><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Deteksi</h2>
+            <button id="btnClearHistory" class="btn btn-secondary"><i class="fa-solid fa-trash"></i> Hapus History</button>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Nama File</th>
+                        <th>Tanggal</th>
+                        <th>Hasil</th>
+                        <th>Confidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if data|length == 0 %}
+                    <tr><td colspan="4" class="empty-row">Belum ada data riwayat.</td></tr>
+                    {% else %}
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>
+                            {% if row[2] == 'Original Voice' %}
+                            <span class="badge badge-original"><i class="fa-solid fa-user"></i> {{ row[2] }}</span>
+                            {% else %}
+                            <span class="badge badge-ai"><i class="fa-solid fa-robot"></i> {{ row[2] }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ row[3] }}%</td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 VOICIN — Voice Authenticity Detection</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - VOICIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <i class="fa-solid fa-waveform"></i>
+            <span>VOICIN</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/history">History</a>
+            <a href="/about" class="active">About</a>
+        </div>
+    </nav>
+
+    <section class="about-section">
+        <div class="card about-card">
+            <i class="fa-solid fa-circle-info card-icon"></i>
+            <h2>Tentang VOICIN</h2>
+            <p><strong>VOICIN</strong> adalah aplikasi yang membantu mendeteksi apakah suara adalah asli manusia atau hasil AI.</p>
+            <p>Sistem menggunakan MFCC dan model machine learning untuk memberikan prediksi cepat.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 VOICIN — Voice Authenticity Detection</p>
+    </footer>
+</body>
+</html>
